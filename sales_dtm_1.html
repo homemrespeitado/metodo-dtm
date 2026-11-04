@@ -147,6 +147,18 @@ section.quiet{background:var(--ink-2)}
 .final{text-align:center;padding:100px 0 110px}
 .final h2{margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto}
 
+/* TOAST DE COMPRA */
+#toast{position:fixed;bottom:22px;left:22px;z-index:95;display:flex;flex-direction:column;gap:8px;max-width:280px;pointer-events:none}
+.ti{background:rgba(10,7,7,.96);border:1px solid var(--line);border-left:2px solid var(--ember);padding:12px 16px;font-size:13px;color:var(--dim-2);display:flex;align-items:center;gap:10px;backdrop-filter:blur(8px);box-shadow:0 10px 28px rgba(0,0,0,.4);letter-spacing:.01em;animation:tin .4s ease}
+.ti b{color:var(--paper);font-weight:600}
+@keyframes tin{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:translateX(0)}}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--ember);flex-shrink:0;box-shadow:0 0 0 0 rgba(232,88,30,.7);animation:tpulse 1.4s infinite}
+@keyframes tpulse{0%{box-shadow:0 0 0 0 rgba(232,88,30,.6)}70%{box-shadow:0 0 0 6px rgba(232,88,30,0)}100%{box-shadow:0 0 0 0 rgba(232,88,30,0)}}
+@media(max-width:620px){
+  #toast{bottom:14px;left:14px;right:14px;max-width:none}
+  .ti{font-size:12.5px;padding:10px 14px}
+}
+
 /* FOOTER */
 footer{border-top:1px solid var(--line);padding:36px 0;background:var(--ink-2)}
 .foot{max-width:var(--maxw);margin:0 auto;padding:0 28px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:var(--dim);letter-spacing:.06em}
@@ -170,6 +182,8 @@ footer{border-top:1px solid var(--line);padding:36px 0;background:var(--ink-2)}
     <a href="https://pay.kiwify.com.br/YXmOn5v" class="nav-cta">Quero o guia — R$17,90</a>
   </div>
 </header>
+
+<div id="toast"></div>
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -386,6 +400,31 @@ function toggleFaq(el){
   document.querySelectorAll('.faq-icon').forEach(function(x){x.textContent='+'});
   if(!open){a.classList.add('open');icon.textContent='−';}
 }
+
+/* Toasts de compra */
+(function(){
+  var nomes=['Diego C.','João M.','Carlos S.','Lucas P.','André R.','Felipe T.','Rodrigo B.','Mateus A.','Thiago L.','Bruno H.','Rafael O.','Pedro V.','Gabriel S.','Vinicius M.','Henrique F.','Marcelo D.','Fernando R.','Eduardo N.','Gustavo P.','Leandro A.'];
+  var cidades=['Goiânia','São Paulo','Rio de Janeiro','Belo Horizonte','Fortaleza','Recife','Manaus','Salvador','Curitiba','Porto Alegre','Florianópolis','Brasília','Natal','Vitória','Campinas','Cuiabá','Maceió','Teresina','Belém','João Pessoa'];
+  var cont=document.getElementById('toast');
+  function show(){
+    var n=nomes[Math.floor(Math.random()*nomes.length)];
+    var c=cidades[Math.floor(Math.random()*cidades.length)];
+    var d=document.createElement('div');
+    d.className='ti';
+    d.innerHTML='<span class="tdot"></span><span><b>'+n+'</b> de '+c+' garantiu acesso</span>';
+    cont.appendChild(d);
+    setTimeout(function(){
+      d.style.transition='opacity .35s,transform .35s';
+      d.style.opacity='0';
+      d.style.transform='translateX(-14px)';
+      setTimeout(function(){d.remove();},400);
+    },5000);
+  }
+  setTimeout(function(){
+    show();
+    setInterval(show,9000);
+  },4500);
+})();
 </script>
 </body>
 </html>
