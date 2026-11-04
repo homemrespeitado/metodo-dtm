@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Do Zero ao Tesão em Minutos</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b0707;--bg2:#120c0c;--bg3:#1a1010;
+  --ember:#d4410a;--ember2:#e8581e;--ember3:#f97316;
+  --rose:#c2185b;--rose2:#e91e8c;
+  --cream:#f5ede4;--cream2:rgba(245,237,228,.7);--cream3:rgba(245,237,228,.35);
+  --gold:#c9963a;--gold2:#e8b96d;
+  --bd:rgba(212,65,10,.2);--bdc:rgba(201,150,58,.2);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;overflow-x:hidden;line-height:1.7;padding-bottom:88px}
+body::before{content:'';position:fixed;inset:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='.8' fill='%23f97316'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+.heat-bar{height:2px;background:linear-gradient(90deg,transparent,var(--ember),var(--ember3),var(--rose),transparent);animation:heatMove 4s ease-in-out infinite}
+@keyframes heatMove{0%,100%{opacity:.6;transform:scaleX(.8)}50%{opacity:1;transform:scaleX(1)}}
+
+/* TICKER */
+#ticker{background:var(--bg2);border-bottom:1px solid var(--bd);padding:8px 0;overflow:hidden}
+.tk-track{display:flex;white-space:nowrap;animation:tkt 30s linear infinite}
+.tk-item{padding:0 28px;font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--cream3)}
+.tk-item b{color:var(--ember3)}
+.tk-dot{color:var(--ember);padding:0 4px;opacity:.5}
+@keyframes tkt{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 100% 80% at 50% 30%,#1a0500 0%,#0b0707 70%);padding:40px 24px}
+.hero-grid{max-width:1100px;width:100%;display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:56px;align-items:center;position:relative;z-index:2}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:28px;text-align:center}}
+
+/* CAPA */
+.capa-wrap{position:relative}
+.capa-glow{position:absolute;inset:-18px;background:radial-gradient(ellipse at center,rgba(212,65,10,.35),transparent 70%);filter:blur(28px);z-index:0;animation:capaPulse 4s ease-in-out infinite}
+@keyframes capaPulse{0%,100%{opacity:.6}50%{opacity:1}}
+.capa{position:relative;z-index:1;width:100%;max-width:420px;margin:0 auto;display:block;box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 0 1px rgba(201,150,58,.25);transform:perspective(900px) rotateY(-4deg);transition:transform .5s ease}
+.capa:hover{transform:perspective(900px) rotateY(0deg) translateY(-4px)}
+@media(max-width:860px){.capa{max-width:280px;transform:none}.capa:hover{transform:translateY(-3px)}}
+
+/* HERO TEXT */
+.hero-text{position:relative}
+.h-kicker{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--bd);background:rgba(212,65,10,.06);padding:6px 16px;font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--ember3);margin-bottom:18px}
+.kd{width:5px;height:5px;border-radius:50%;background:var(--ember3);animation:kblink 1.2s infinite}
+@keyframes kblink{0%,100%{opacity:1}50%{opacity:.2}}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,6vw,62px);line-height:.95;font-weight:700;margin-bottom:14px;letter-spacing:-1px}
+h1 .l1{display:block;color:var(--cream)}
+h1 .l2{display:block;font-style:italic;color:var(--ember3)}
+h1 .l3{display:block;color:var(--gold2);font-size:.65em;margin-top:4px}
+.hero-deck{font-size:clamp(14px,2vw,16px);color:var(--cream2);max-width:520px;margin:0 0 20px;line-height:1.75;font-weight:300}
+@media(max-width:860px){.hero-deck{margin:0 auto 20px}}
+.hero-deck b{color:var(--cream);font-weight:600}
+
+/* PRICE BLOCK HERO */
+.price-row{display:flex;align-items:baseline;gap:14px;margin:18px 0 10px;flex-wrap:wrap}
+@media(max-width:860px){.price-row{justify-content:center}}
+.p-old{font-family:'Cormorant Garamond',serif;font-size:22px;color:rgba(245,237,228,.3);text-decoration:line-through;font-style:italic}
+.p-new{font-family:'Cormorant Garamond',serif;font-size:clamp(50px,9vw,72px);font-weight:700;font-style:italic;color:var(--cream);line-height:1}
+.p-new sup{font-size:.35em;color:var(--ember3);vertical-align:top;margin-top:10px;display:inline-block}
+.p-new .c{font-size:.35em;color:rgba(245,237,228,.35)}
+.p-meta{font-size:12px;color:var(--cream3);letter-spacing:.5px;margin-bottom:22px}
+
+/* CTA */
+.cta{display:inline-block;position:relative;overflow:hidden;background:linear-gradient(135deg,#8b1500,var(--ember),var(--ember2));color:#fff;font-size:clamp(14px,2vw,16px);font-weight:700;padding:18px 36px;border:none;cursor:pointer;text-align:center;text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;transition:transform .15s;animation:cpulse 3s ease-in-out infinite;min-width:280px}
+@keyframes cpulse{0%,100%{box-shadow:0 10px 36px rgba(212,65,10,.4)}50%{box-shadow:0 14px 56px rgba(249,115,22,.65)}}
+.cta::before{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:csh 2.5s infinite}
+@keyframes csh{to{left:160%}}
+.cta:hover{transform:translateY(-2px)}
+.cta-note{font-size:11px;color:var(--cream3);margin-top:10px;letter-spacing:.3px}
+
+.trust-row{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+@media(max-width:860px){.trust-row{justify-content:center}}
+.trust-item{font-size:10px;padding:5px 12px;border:1px solid var(--bd);color:var(--cream3);letter-spacing:1px;background:rgba(0,0,0,.2)}
+.trust-item b{color:var(--ember3)}
+
+/* SECTIONS */
+.sec{padding:72px 24px;max-width:960px;margin:0 auto;position:relative;z-index:1}
+.s-tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;text-align:center}
+.sh2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,44px);font-weight:700;line-height:1;letter-spacing:-1px;text-align:center;margin-bottom:12px}
+.sh2 em{color:var(--ember3);font-style:italic}
+.rule{width:40px;height:1px;background:linear-gradient(90deg,var(--ember),var(--rose));margin:14px auto 36px}
+.s-dark{background:#0b0707}.s-deep{background:#0f0a0a}.s-coal{background:#0c0b0b}.s-ember{background:#100805}.s-mid{background:#0d0c0c}
+
+/* INCLUSO HOJE */
+.incluso-main{display:flex;gap:28px;align-items:center;padding:28px;border:1px solid var(--bdc);background:linear-gradient(135deg,rgba(201,150,58,.05),rgba(212,65,10,.03));margin-bottom:20px;flex-wrap:wrap;justify-content:center}
+.incluso-cover{width:140px;flex-shrink:0;box-shadow:0 14px 40px rgba(0,0,0,.55)}
+.incluso-cover img{width:100%;display:block}
+.incluso-body{flex:1;min-width:220px}
+.incluso-tag{display:inline-block;background:var(--ember);color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;padding:3px 10px;text-transform:uppercase;margin-bottom:10px}
+.incluso-h{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;font-style:italic;color:var(--cream);margin-bottom:6px;line-height:1.2}
+.incluso-d{font-size:13px;color:var(--cream3);line-height:1.6;font-weight:300}
+.incluso-v{font-size:13px;color:var(--gold2);font-weight:600;margin-top:8px}
+
+.bonus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:620px){.bonus-grid{grid-template-columns:1fr;gap:16px}}
+.bc{border:1px solid var(--bd);overflow:hidden;background:var(--bg2);transition:.25s}
+.bc:hover{border-color:rgba(212,65,10,.45);transform:translateY(-4px)}
+.bc-img{width:100%;position:relative;background:var(--bg3)}
+.bc-img img{width:100%;height:auto;display:block;object-fit:contain}
+.bc-tag{position:absolute;top:10px;left:10px;background:var(--ember);color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;padding:3px 9px;text-transform:uppercase}
+.bc-body{padding:14px}
+.bc-h{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;font-style:italic;color:var(--cream);margin-bottom:4px;line-height:1.25}
+.bc-d{font-size:12px;color:var(--cream3);margin-bottom:6px;line-height:1.5;font-weight:300}
+.bc-v{font-size:12px;color:var(--gold2);font-weight:600}
+.bonus-total{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border:1px solid var(--bdc);background:rgba(201,150,58,.04);margin-top:20px;flex-wrap:wrap;gap:10px}
+.bonus-total span{font-size:13px;color:var(--cream3)}
+.bonus-total strong{font-family:'Cormorant Garamond',serif;font-size:28px;font-style:italic;color:var(--gold2)}
+
+/* DEPOIMENTOS */
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:780px){.dep-grid{grid-template-columns:1fr}}
+.dep{padding:22px;border:1px solid var(--bd);background:rgba(255,255,255,.018);position:relative}
+.dep::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,var(--ember),var(--rose))}
+.dep-q{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--cream2);line-height:1.65;margin-bottom:14px;font-weight:600}
+.dep-a{display:flex;align-items:center;gap:10px}
+.dep-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--ember),var(--rose));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0}
+.dep-n{font-size:12px;font-weight:600}
+.dep-s{font-size:10px;color:var(--gold2);letter-spacing:1px}
+
+/* PRICE SECTION */
+#comprar{background:radial-gradient(ellipse at center,#1a0800 0%,#0d0707 70%);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:72px 24px;text-align:center;position:relative;overflow:hidden}
+.p-eye{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--ember3);margin-bottom:18px}
+.midnight{border:1px solid var(--bd);background:rgba(0,0,0,.5);padding:14px 26px;display:inline-flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:22px}
+.ml{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ember3);font-weight:600}
+.mt{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:700;font-style:italic;color:var(--ember3);line-height:1;letter-spacing:3px;font-variant-numeric:tabular-nums}
+.ms{font-size:11px;color:var(--cream3)}
+.psobe{display:inline-flex;align-items:center;gap:8px;background:rgba(212,65,10,.1);border:1px solid rgba(212,65,10,.3);padding:7px 18px;margin-bottom:20px;font-size:11px;color:var(--ember3);letter-spacing:1px;animation:psb 2s ease-in-out infinite}
+@keyframes psb{0%,100%{opacity:.8}50%{opacity:1;border-color:var(--ember)}}
+.p-strike{font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(245,237,228,.2);text-decoration:line-through;margin-bottom:5px;font-style:italic}
+.p-bridge{font-size:13px;color:var(--cream3);margin-bottom:8px}
+.p-big{font-family:'Cormorant Garamond',serif;font-size:clamp(70px,16vw,110px);font-weight:700;font-style:italic;line-height:.9;color:var(--cream);margin:10px 0}
+.p-big sup{font-size:.32em;color:var(--ember3);vertical-align:top;margin-top:16px;display:inline-block}
+.p-big .p-cents{font-size:.32em;color:rgba(245,237,228,.3)}
+.p-desc{font-size:13px;color:var(--cream3);margin-bottom:24px;font-weight:300}
+.scar-block{max-width:420px;margin:0 auto 24px;border:1px solid var(--bd);background:rgba(0,0,0,.3);padding:16px 20px}
+.scar-row{display:flex;justify-content:space-between;font-size:11px;color:var(--cream3);margin-bottom:7px}
+.scar-row b{color:var(--ember3)}
+.scar-bg{height:4px;background:rgba(255,255,255,.06);border-radius:4px}
+.scar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--ember),var(--ember3));transition:width 1.2s ease}
+
+/* GARANTIA */
+.gbox{border:1px solid var(--bdc);padding:32px;text-align:center;max-width:480px;margin:0 auto;background:rgba(201,150,58,.025)}
+.gi{font-size:40px;margin-bottom:12px}
+.gt{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;font-style:italic;color:var(--gold2);margin-bottom:8px}
+.gd{font-size:14px;color:var(--cream2);line-height:1.75;font-weight:300}
+
+/* FAQ */
+.faq-list{max-width:680px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(212,65,10,.08)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{padding:18px 0;font-size:15px;font-weight:600;color:var(--cream);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none}
+.faq-q:hover{color:var(--gold2)}
+.faq-icon{font-size:18px;color:var(--ember3);font-family:'Cormorant Garamond',serif;font-weight:700}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .25s ease}
+.faq-a.open{max-height:300px;padding-bottom:18px}
+.faq-a p{font-size:14px;color:var(--cream2);line-height:1.75;font-weight:300}
+.faq-a p b{color:var(--cream);font-weight:600}
+
+/* FLOAT BAR */
+#float{position:fixed;bottom:0;left:0;right:0;z-index:995;background:rgba(11,7,7,.98);border-top:1px solid var(--bd);padding:10px 16px;backdrop-filter:blur(20px)}
+.fi{max-width:560px;margin:0 auto;display:flex;gap:14px;align-items:center}
+.fp-old{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--cream3);text-decoration:line-through}
+.fp-new{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;font-style:italic;color:var(--gold2);line-height:1}
+#float .cta{flex:1;padding:14px 16px;font-size:13px;min-width:0}
+</style>
+</head>
+<body>
+
+<div class="heat-bar"></div>
+
+<!-- TICKER -->
+<div id="ticker">
+  <div class="tk-track">
+    <span class="tk-item">⏳ <b>Oferta expira em minutos</b></span><span class="tk-dot">·</span>
+    <span class="tk-item">🔒 Acesso limitado</span><span class="tk-dot">·</span>
+    <span class="tk-item">⚠️ <b>Preço sobe em breve</b></span><span class="tk-dot">·</span>
+    <span class="tk-item">🚪 Últimas vagas</span><span class="tk-dot">·</span>
+    <span class="tk-item">⏳ <b>Oferta expira em minutos</b></span><span class="tk-dot">·</span>
+    <span class="tk-item">🔒 Acesso limitado</span><span class="tk-dot">·</span>
+    <span class="tk-item">⚠️ <b>Preço sobe em breve</b></span><span class="tk-dot">·</span>
+    <span class="tk-item">🚪 Últimas vagas</span><span class="tk-dot">·</span>
+  </div>
+</div>
+
+<!-- HERO COM CAPA -->
+<section class="hero">
+  <div class="hero-grid">
+    <!-- CAPA DO PRODUTO -->
+    <div class="capa-wrap">
+      <div class="capa-glow"></div>
+      <img src="capa-dtm.jpg" alt="Capa do guia Do Zero ao Tesão em Minutos" class="capa">
+    </div>
+
+    <!-- TEXTO + PREÇO + CTA -->
+    <div class="hero-text">
+      <div class="h-kicker"><span class="kd"></span>✅ Sua oferta foi liberada</div>
+      <h1>
+        <span class="l1">Do Zero</span>
+        <span class="l2">ao Tesão</span>
+        <span class="l3">em Minutos</span>
+      </h1>
+      <p class="hero-deck">O guia definitivo com o <b>Método DTM</b> — o gatilho invisível que faz caras comuns ativarem desejo real em menos de 3 minutos.</p>
+
+      <div class="price-row">
+        <span class="p-old">R$211</span>
+        <span class="p-new"><sup>R$</sup>17<span class="c">,90</span></span>
+      </div>
+      <div class="p-meta">Pagamento único · Acesso vitalício · Garantia 7 dias</div>
+
+      <a href="https://pay.kiwify.com.br/YXmOn5v" class="cta">🔥 Quero acesso agora</a>
+      <p class="cta-note">🔒 Compra 100% segura · Acesso imediato</p>
+
+      <div class="trust-row">
+        <span class="trust-item">💳 Pix · Cartão · Boleto</span>
+        <span class="trust-item">⚡ Entrega imediata</span>
+        <span class="trust-item">🛡️ <b>7 dias de garantia</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUSO HOJE -->
+<div class="s-deep">
+<section class="sec">
+  <p class="s-tag">Tudo isso você recebe hoje</p>
+  <h2 class="sh2">O guia principal <em>+ 3 bônus exclusivos</em></h2>
+  <div class="rule"></div>
+
+  <div class="incluso-main">
+    <div class="incluso-cover"><img src="capa-dtm.jpg" alt="Guia principal"></div>
+    <div class="incluso-body">
+      <span class="incluso-tag">Guia principal</span>
+      <div class="incluso-h">Do Zero ao Tesão em Minutos</div>
+      <div class="incluso-d">O método completo DTM (Domínio · Tensão · Magnetismo) — passo a passo pra criar atração real em qualquer interação.</div>
+      <div class="incluso-v">Valor: R$197</div>
+    </div>
+  </div>
+
+  <div class="bonus-grid">
+    <div class="bc">
+      <div class="bc-img"><img src="https://i.imgur.com/oCMQXfB.jpg" alt="O Beijo que Desarma"><div class="bc-tag">Bônus 01</div></div>
+      <div class="bc-body"><div class="bc-h">O Beijo que Desarma</div><div class="bc-d">Como beijar para ela perder o controle completamente</div><div class="bc-v">Valor: R$97</div></div>
+    </div>
+    <div class="bc">
+      <div class="bc-img"><img src="https://i.imgur.com/HhUNfaM.jpg" alt="Deixe Ela com Fome"><div class="bc-tag">Bônus 02</div></div>
+      <div class="bc-body"><div class="bc-h">Deixe Ela com Fome de Sexo Selvagem</div><div class="bc-d">Só com sua presença — sem dizer uma palavra</div><div class="bc-v">Valor: R$67</div></div>
+    </div>
+    <div class="bc">
+      <div class="bc-img"><img src="https://i.imgur.com/7TJJP78.jpg" alt="Como Fazer Ela Molhar"><div class="bc-tag">Bônus 03</div></div>
+      <div class="bc-body"><div class="bc-h">Como Fazer Ela Molhar Só de Pensar em Você</div><div class="bc-d">O código mental que faz você viver na cabeça dela 24h</div><div class="bc-v">Valor: R$47</div></div>
+    </div>
+  </div>
+
+  <div class="bonus-total"><span>💰 Valor total (guia + bônus)</span><strong>R$408</strong></div>
+</section>
+</div>
+
+<!-- DEPOIMENTOS CURTOS -->
+<div class="s-coal">
+<section class="sec">
+  <p class="s-tag">Homens que aplicaram</p>
+  <h2 class="sh2">Resultado <em>real</em></h2>
+  <div class="rule"></div>
+  <div class="dep-grid">
+    <div class="dep">
+      <div class="dep-q">"Apliquei a Regra dos 3 Minutos na balada. Em menos de 10 minutos ela já estava colada em mim. Saímos juntos."</div>
+      <div class="dep-a"><div class="dep-av">LM</div><div><div class="dep-n">Lucas Mendes · SP</div><div class="dep-s">★★★★★</div></div></div>
+    </div>
+    <div class="dep">
+      <div class="dep-q">"Usei o Domínio + Magnetismo e em dois dias a gata do trabalho mudou totalmente o jeito de me tratar. Impressionante."</div>
+      <div class="dep-a"><div class="dep-av">MA</div><div><div class="dep-n">Mateus Almeida · CE</div><div class="dep-s">★★★★★</div></div></div>
+    </div>
+    <div class="dep">
+      <div class="dep-q">"Conheci ela na praia. Usei a linguagem corporal de predador. Duas horas depois já estávamos no apartamento dela."</div>
+      <div class="dep-a"><div class="dep-av">AL</div><div><div class="dep-n">André Lima · SC</div><div class="dep-s">★★★★★</div></div></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- PREÇO FINAL / CTA FORTE -->
+<div id="comprar">
+  <div style="max-width:520px;margin:0 auto;text-align:center;position:relative;z-index:1">
+    <p class="p-eye">🧨 Última chance nesse preço</p>
+    <div class="psobe">⚠️ Oferta expira em breve</div>
+    <div class="midnight">
+      <div class="ml">⏳ Tempo restante</div>
+      <div class="mt" id="mid-t">14:59</div>
+      <div class="ms">Depois disso, o preço sobe para <b>R$211</b></div>
+    </div>
+    <div class="p-strike">De R$211,00</div>
+    <div class="p-bridge">→ hoje apenas</div>
+    <div class="p-big"><sup>R$</sup>17<span class="p-cents">,90</span></div>
+    <div class="p-desc">Pagamento único · Acesso vitalício · Garantia 7 dias</div>
+
+    <div class="scar-block">
+      <div class="scar-row"><span>📊 Vagas restantes</span><b id="vagas">11 / 50</b></div>
+      <div class="scar-bg"><div class="scar-fill" id="bfill" style="width:78%"></div></div>
+    </div>
+
+    <a href="https://pay.kiwify.com.br/YXmOn5v" class="cta">🔥 Garantir acesso agora</a>
+    <p class="cta-note" style="margin-top:12px">💳 Cartão · Pix · Boleto · Acesso imediato</p>
+  </div>
+</div>
+
+<!-- GARANTIA -->
+<div class="s-mid">
+<section class="sec" style="padding:60px 24px">
+  <div class="gbox">
+    <div class="gi">🛡️</div>
+    <div class="gt">Garantia Incondicional de 7 Dias</div>
+    <p class="gd">Aplique o método. Se por qualquer motivo você não ficar satisfeito, devolvemos <b>100% do seu dinheiro</b>. Sem perguntas. O risco é inteiramente nosso.</p>
+  </div>
+</section>
+</div>
+
+<!-- FAQ MÍNIMO -->
+<div class="s-deep">
+<section class="sec">
+  <p class="s-tag">Perguntas rápidas</p>
+  <h2 class="sh2">Antes de garantir, <em>veja isso</em></h2>
+  <div class="rule"></div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Como vou receber o acesso?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Assim que o pagamento for confirmado, você recebe um e-mail com o link de acesso. <b>É instantâneo</b>. Cartão e Pix aprovam na hora. Boleto em até 1 dia útil.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Funciona pra qualquer tipo de homem?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Sim. O método é baseado em comportamento, não em aparência ou dinheiro. Funciona para quem está disposto a aplicar — tímido, introvertido ou sem experiência anterior.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>E se eu não gostar?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Você tem <b>7 dias de garantia incondicional</b>. Basta enviar um e-mail pedindo o reembolso e devolvemos 100% do valor. Sem perguntas.</p></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FLOAT BAR -->
+<div id="float">
+  <div class="fi">
+    <div><div class="fp-old">R$211</div><div class="fp-new">R$17,90</div></div>
+    <a href="https://pay.kiwify.com.br/YXmOn5v" class="cta">🔥 Garantir agora</a>
+  </div>
+</div>
+
+<script>
+// TIMER 14:59 em loop
+var TOTAL=14*60+59,rem=TOTAL;
+function fmt(s){var m=Math.floor(s/60),se=s%60;return(m<10?'0':'')+m+':'+(se<10?'0':'')+se}
+setInterval(function(){
+  if(rem<=0)rem=TOTAL;rem--;
+  var el=document.getElementById('mid-t');if(el)el.textContent=fmt(rem);
+},1000);
+
+// VAGAS simuladas
+var vn=11;
+function updVagas(){
+  var pct=Math.round((50-vn)/50*100);
+  var v=document.getElementById('vagas');if(v)v.textContent=vn+' / 50';
+  var f=document.getElementById('bfill');if(f)f.style.width=pct+'%';
+}
+setInterval(function(){if(Math.random()<.3&&vn>3){vn--;updVagas();}},20000);
+
+// FAQ toggle
+function toggleFaq(el){
+  var a=el.nextElementSibling,icon=el.querySelector('.faq-icon'),open=a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(function(x){x.classList.remove('open')});
+  document.querySelectorAll('.faq-icon').forEach(function(x){x.textContent='+'});
+  if(!open){a.classList.add('open');icon.textContent='−';}
+}
+</script>
+</body>
+</html>
