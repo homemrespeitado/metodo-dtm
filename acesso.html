@@ -429,6 +429,44 @@ function toggleFaq(el){
   },1000);
 })();
 
+/* Chime suave pros toasts (Web Audio API — sem arquivo externo) */
+var _audioCtx=null, _audioUnlocked=false;
+function _unlockAudio(){
+  if(_audioUnlocked) return;
+  try{
+    _audioCtx = _audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+    if(_audioCtx.state==='suspended') _audioCtx.resume();
+    _audioUnlocked = true;
+  }catch(e){}
+}
+['click','touchstart','keydown','scroll'].forEach(function(ev){
+  window.addEventListener(ev, _unlockAudio, {once:true, passive:true});
+});
+function playChime(){
+  if(!_audioUnlocked || !_audioCtx) return;
+  try{
+    var t = _audioCtx.currentTime;
+    // Tom 1: C6 (1046.5 Hz) — ataque curto, decay suave
+    var o1 = _audioCtx.createOscillator();
+    var g1 = _audioCtx.createGain();
+    o1.type='sine'; o1.frequency.value=1046.5;
+    g1.gain.setValueAtTime(0, t);
+    g1.gain.linearRampToValueAtTime(0.09, t+0.012);
+    g1.gain.exponentialRampToValueAtTime(0.0001, t+0.45);
+    o1.connect(g1); g1.connect(_audioCtx.destination);
+    o1.start(t); o1.stop(t+0.5);
+    // Tom 2: E6 (1318.5 Hz) — entra em cascata, cria o "ting"
+    var o2 = _audioCtx.createOscillator();
+    var g2 = _audioCtx.createGain();
+    o2.type='sine'; o2.frequency.value=1318.5;
+    g2.gain.setValueAtTime(0, t+0.06);
+    g2.gain.linearRampToValueAtTime(0.07, t+0.08);
+    g2.gain.exponentialRampToValueAtTime(0.0001, t+0.7);
+    o2.connect(g2); g2.connect(_audioCtx.destination);
+    o2.start(t+0.06); o2.stop(t+0.75);
+  }catch(e){}
+}
+
 /* Toasts de compra */
 (function(){
   var nomes=['Diego C.','João M.','Carlos S.','Lucas P.','André R.','Felipe T.','Rodrigo B.','Mateus A.','Thiago L.','Bruno H.','Rafael O.','Pedro V.','Gabriel S.','Vinicius M.','Henrique F.','Marcelo D.','Fernando R.','Eduardo N.','Gustavo P.','Leandro A.'];
@@ -441,6 +479,7 @@ function toggleFaq(el){
     d.className='ti';
     d.innerHTML='<span class="tdot"></span><span><b>'+n+'</b> de '+c+' garantiu acesso</span>';
     cont.appendChild(d);
+    playChime();
     setTimeout(function(){
       d.style.transition='opacity .35s,transform .35s';
       d.style.opacity='0';
@@ -450,8 +489,8 @@ function toggleFaq(el){
   }
   setTimeout(function(){
     show();
-    setInterval(show,9000);
-  },4500);
+    setInterval(show,25000);
+  },5000);
 })();
 </script>
 </body>
