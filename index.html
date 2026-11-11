@@ -86,8 +86,9 @@ h1 .l3{display:block;font-style:normal;color:var(--gold2);font-size:.65em;margin
 .instructions-text b{color:var(--gold2);font-weight:700}
 
 /* ===== REVEAL CTA ===== */
-#reveal-cta{max-width:620px;margin:36px auto 0;padding:0 16px;opacity:0;transform:translateY(32px);pointer-events:none;transition:opacity .9s ease,transform .9s ease}
-#reveal-cta.show{opacity:1;transform:translateY(0);pointer-events:auto}
+#reveal-cta{display:none;max-width:620px;margin:36px auto 0;padding:0 16px}
+#reveal-cta.show{display:block;animation:revealFade .9s ease both}
+@keyframes revealFade{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
 .reveal-eye{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(201,150,58,.15),rgba(212,65,10,.15));border:1px solid var(--bdc);padding:8px 20px;font-size:11px;color:var(--gold2);letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:18px;animation:badgeFlash 1.6s ease-in-out infinite}
 @keyframes badgeFlash{0%,100%{box-shadow:0 0 0 0 rgba(201,150,58,.3)}50%{box-shadow:0 0 26px 0 rgba(201,150,58,.5)}}
